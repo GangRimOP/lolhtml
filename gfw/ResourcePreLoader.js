@@ -76,7 +76,7 @@ LoadingState.prototype.Render = function( )
 LoadingState.prototype.Update = function( )
 {
     // 리소스를 모두 로딩했다면 게임 타이틀 상태로 전환한다.
-    if( resourcePreLoader.isLoadComplete && soundSystem.isLoadComplete )
+    if( resourcePreLoader.isLoadComplete /*&& soundSystem.isLoadComplete*/ )
     {
         Console.log("Load fin.");
         ChangeGameState( after_loading_state );
