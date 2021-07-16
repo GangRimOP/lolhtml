@@ -8,7 +8,7 @@ function ResourcePreLoader()
 }
 
 ResourcePreLoader.prototype.AddImage = function( fileName )
-{    
+{
     // 리소스 중복에 대한 처리
     for( var i = 0; i < this.arrResource.length; i++ )
     {
@@ -18,13 +18,13 @@ ResourcePreLoader.prototype.AddImage = function( fileName )
             return;
         }
     }
-    
+
     var img = new Image();
     img.src = fileName;
     img.addEventListener("load", onLoadImageResourceComplete, false);
     this.arrResource.push( { name: fileName ,image: img  } );
     this.intAllResourceCount++;
-    
+
     debugSystem.Log( "LOG", "load resource "+ fileName );
 }
 
@@ -34,10 +34,10 @@ ResourcePreLoader.prototype.GetImage = function( fileName )
     {
         if( this.arrResource[i].name == fileName )
         {
-            return this.arrResource[i].image;  
+            return this.arrResource[i].image;
         }
     }
-    
+
     debugSystem.Log( "ERROR", "can't find resource "+ fileName );
     return null;
 }
@@ -47,7 +47,7 @@ var resourcePreLoader = new ResourcePreLoader();
 
 function onLoadImageResourceComplete()
 {
-    
+
     resourcePreLoader.nowResourceLoadedCount++;
     // 현재 로딩된 리소스 수와 총 리소스 수 와 비교
     if( resourcePreLoader.nowResourceLoadedCount <= resourcePreLoader.intAllResourceCount )
@@ -66,7 +66,7 @@ LoadingState.prototype.Render = function( )
 {
     var theCanvas = document.getElementById("GameCanvas");
     var Context  = theCanvas.getContext("2d");
-    
+
     var totalResourceCount = resourcePreLoader.intAllResourceCount + soundSystem.intAllResourceCount;
     var nowCompleteResourceCount = resourcePreLoader.nowResourceLoadedCount + soundSystem.nowResourceLoadedCount;
 
@@ -78,7 +78,7 @@ LoadingState.prototype.Update = function( )
     // 리소스를 모두 로딩했다면 게임 타이틀 상태로 전환한다.
     if( resourcePreLoader.isLoadComplete && soundSystem.isLoadComplete )
     {
+        Console.log("Load fin.");
         ChangeGameState( after_loading_state );
-    }    
+    }
 }
-
