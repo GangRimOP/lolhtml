@@ -29,6 +29,7 @@ Neeko.Update = function (){
 PlayState.prototype.Render = function () {
   var theCanvas = document.getElementById('GameCanvas');
   var Context = theCanvas.getContext('2d');
+  Console.log("Rendering");
   Context.drawImage(resourcePreLoader.GetImage("background.jpg"), 0, 0);
   Neeko.Render(Context);
 
